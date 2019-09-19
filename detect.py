@@ -1,6 +1,7 @@
 import cv2
 
-imagePath = "BPJE3879.JPG"
+image = "BPJE3879.JPG"
+imagePath = "img/" + image 
 cascPath = "haarcascade_frontalface_default.xml"
 
 # Create the haar cascade
@@ -16,14 +17,20 @@ faces = faceCascade.detectMultiScale(
     scaleFactor=1.2,
     minNeighbors=5,
     minSize=(30, 30),
-    flags = cv2.cv.CV_HAAR_SCALE_IMAGE
+    flags = cv2.CASCADE_SCALE_IMAGE
 )
 
 print("Found {0} faces!".format(len(faces)))
+
+scale_percent = 60 # percent of original size
+width = int(image.shape[1] * scale_percent / 100)
+height = int(image.shape[0] * scale_percent / 100)
+dim = (width, height)
 
 # Draw a rectangle around the faces
 for (x, y, w, h) in faces:
     cv2.rectangle(image, (x, y), (x+w, y+h), (0, 255, 0), 2)
 
-cv2.imshow("Faces found", image)
+imageSmol = cv2.resize(image, dim)
+cv2.imshow("Faces found", imageSmol)
 cv2.waitKey(0)
