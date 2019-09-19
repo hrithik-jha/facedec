@@ -1,7 +1,7 @@
 import cv2
 
-imagePath = ""
-cascPath = ""
+imagePath = "BPJE3879.JPG"
+cascPath = "haarcascade_frontalface_default.xml"
 
 # Create the haar cascade
 faceCascade = cv2.CascadeClassifier(cascPath)
