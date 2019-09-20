@@ -13,13 +13,13 @@ app = Flask(__name__)
 def hello():
         return "Server is listening..."
 
-@app.route('/upload', methods=['POST'])
+@app.route('/upload', methods=['GET'])
 def upload_file():
-    if request.method == 'POST':
-        static_file = request.files['the_file']
+    if request.method == 'GET':
+        #static_file = request.files['the_file']
         name = imgName()
-        static_file.save('/img/' + name + ".jpg")
-        detectImage(name)
+        #static_file.save('/img/' + name + ".jpg")
+        detectImage('piPrograms/test_image.png')
         return "Image uploaded."
 
 app.run(debug=True)

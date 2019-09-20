@@ -1,7 +1,7 @@
 import cv2
 
 def detectImage(name):
-    imagePath = "img/" +  name
+    imagePath = name
     cascPath = "haarcascade_frontalface_default.xml"
 
     # Create the haar cascade
