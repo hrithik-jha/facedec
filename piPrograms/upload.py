@@ -4,12 +4,17 @@ import cv2
 
 
 def sendImage(i):
-    image_file_descriptor = open(i, 'rb')
-    files = {'url': 'done'}
-    url = 'http://localhost:5000/upload'
-    requests.get(url)
-
-    image_file_descriptor.close()
+         
+    image_filename = os.path.basename(i)
+ 
+    multipart_form_data = {
+        'image': (image_filename, open(i, 'rb')),
+    }
+ 
+    response = requests.post('http://localhost:5000/upload',
+                             files=multipart_form_data)
+ 
+    print(response)
 
 def get_image():
     retval, im = camera.read()
@@ -23,9 +28,9 @@ for i in range(ramp_frames):
     temp = get_image()
 print("Taking image...")
 camera_capture = get_image()
-file = "./test_image.png"
+file = "./file.png"
 
 cv2.imwrite(file, camera_capture)
-sendImage("./test_image.png")
+sendImage("./file.png")
 del(camera)
 
