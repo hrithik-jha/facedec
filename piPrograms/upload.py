@@ -11,7 +11,7 @@ def sendImage(i):
         'image': (image_filename, open(i, 'rb')),
     }
  
-    response = requests.post('http://localhost:5000/upload',
+    response = requests.post('http://iotProj.pythonanywhere.com/upload',
                              files=multipart_form_data)
  
     print(response)
