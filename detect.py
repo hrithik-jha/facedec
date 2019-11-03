@@ -1,4 +1,5 @@
 import cv2
+from datetime import datetime
 
 def detectImage(name):
     imagePath = name
@@ -21,6 +22,12 @@ def detectImage(name):
     )
 
     print("Found {0} faces!".format(len(faces)))
+    now = datetime.now()
+    file1 = open("log.txt", "a")
+    strW = now.strftime("%d/%m/%Y %H:%M:%S")
+    strW = strW + " " + "Faces: " + str(len(faces)) + "\n"
+    file1.writelines(strW)
+    file1.close()
 
     scale_percent = 60 # percent of original size
     width = int(image.shape[1] * scale_percent / 100)
@@ -33,6 +40,8 @@ def detectImage(name):
 
     imageSmol = cv2.resize(image, dim)
     cv2.imshow("Faces found", imageSmol)
-    if(len(faces) > 0):    
-        cv2.imwrite("/detectedImages" + name, image)
+    #if(len(faces) > 0):
+        #cv2.imwrite("/detectedImages/" + name, image)
+
+        #return len(faces)
     cv2.waitKey(0)

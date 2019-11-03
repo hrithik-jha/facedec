@@ -21,6 +21,8 @@ def index():
     if request.method == 'POST':
         file1 = request.files['image']
         file1.save('img/test.png')
-        return "File saved." 
+        detectImage('img/test.png')
+        return "File Saved"
 
-app.run(debug=True)
+if __name__ == '__main__':
+    app.run()
