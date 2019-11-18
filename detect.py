@@ -45,3 +45,5 @@ def detectImage(name):
 
         #return len(faces)
     cv2.waitKey(0)
+
+detectImage('piPrograms/file.png')
