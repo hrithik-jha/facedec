@@ -21,7 +21,8 @@ for image in images:
     # match your image with the image and check if it matches
     result = face_recognition.compare_faces(
         [image_to_be_matched_encoded], current_image_encoded)
-    # check if it was a match
+    
+    # check if image was a match
     if result[0] == True:
         print("Matched: " + image)
     else:
